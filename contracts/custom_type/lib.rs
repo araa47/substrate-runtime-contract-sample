@@ -8,7 +8,7 @@ use ink_prelude::{
 };
 
 use ink_core::storage;
-use ink_lang2 as ink;
+use ink_lang as ink;
 
 /// Define hashing functions required for hashing the key to read a Value from runtime storage
 mod hashing {
@@ -74,7 +74,7 @@ mod custom_type {
             let storage_prefix = hashing::twox_128(&b"FooStore"[..]);
             key[0..16].copy_from_slice(&module_prefix);
             key[16..32].copy_from_slice(&storage_prefix);
-            self.env().println(&format!("Storage key: {:?}", key));
+           // self.env().println(&format!("Storage key: {:?}", key));
 
             // Attempt to read and decode the value directly from the runtime storage
             let result = self.env().get_runtime_storage::<Foo>(&key[..]);
@@ -87,7 +87,7 @@ mod custom_type {
                     // Either the key did not exist or it failed to decode.
                     // Print the reason for the error and return None.
                     // *Note:* `println` should only be used for debugging, not in production contracts.
-                    self.env().println(&format!("Error reading runtime storage: {:?}", err));
+                   // self.env().println(&format!("Error reading runtime storage: {:?}", err));
                     None
                 }
             }
